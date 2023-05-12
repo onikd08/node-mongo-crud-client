@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Home = () => {
   const users = useLoaderData();
   const [displayUsers, setDisplayUsers] = useState(users);
-  console.log(displayUsers);
 
   const handleDeleteUser = (user) => {
     const agree = window.confirm(
@@ -36,6 +35,9 @@ const Home = () => {
           <p key={idx}>
             {user.name} {user.email}
             <button onClick={() => handleDeleteUser(user)}>X</button>
+            <Link to={`/update/${user._id}`}>
+              <button>Update</button>
+            </Link>
           </p>
         ))}
       </div>
